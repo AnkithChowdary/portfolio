@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ankith Chowdary — Software Engineer & Competitive Programmer</title>
+<meta name="description" content="Portfolio of Ankith Chowdary — final-year CS student at KL University. 750+ LeetCode problems solved, full-stack and AI projects with React, Spring Boot, and LangGraph.">
+<meta property="og:title" content="Ankith Chowdary — Software Engineer & Competitive Programmer">
+<meta property="og:description" content="Final-year CS student at KL University with strong DSA fundamentals and full-stack + AI project experience.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3F4EF;
+    --paper-line:#DCDFD4;
+    --ink:#181B26;
+    --ink-soft:#565A63;
+    --amber:#E39A2D;
+    --amber-text:#9C6317;
+    --indigo:#4640C7;
+    --rule:#CBCEC2;
+    --max:1120px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    background-image:
+      linear-gradient(var(--paper-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-attachment: fixed;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
+
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-0.01em;}
+
+  .mono{font-family:'JetBrains Mono',monospace;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(243,244,239,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--rule);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:64px;
+  }
+  .nav-mark{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;}
+  .nav-links{display:flex;gap:28px;font-size:0.92rem;color:var(--ink-soft);}
+  .nav-links a{position:relative;padding:4px 0;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a::after{
+    content:'';position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--amber);transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-links a[aria-current="true"]{color:var(--ink);}
+  .nav-links a[aria-current="true"]::after{width:100%;background:var(--indigo);}
+  .nav-links a:focus-visible, .btn:focus-visible, .proj-link:focus-visible{
+    outline:2px solid var(--indigo);outline-offset:3px;
+  }
+  .nav-toggle{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--ink);}
+
+  @media (max-width:720px){
+    .nav-links{
+      position:absolute;top:64px;left:0;right:0;
+      background:var(--paper);
+      flex-direction:column;gap:0;
+      border-bottom:1px solid var(--rule);
+      max-height:0;overflow:hidden;
+      transition:max-height .3s ease;
+    }
+    .nav-links.open{max-height:260px;}
+    .nav-links a{padding:14px 32px;border-top:1px solid var(--paper-line);}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:88px 0 40px;}
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.35fr 1fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5.4vw, 4.4rem);
+    line-height:1.03;
+    margin-bottom:22px;
+  }
+  .hero .role{
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    max-width:46ch;
+    margin-bottom:32px;
+  }
+  .hero .role strong{color:var(--ink);font-weight:600;}
+  .cta-row{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:13px 22px;
+    font-size:0.94rem;font-weight:500;
+    border-radius:2px;
+    border:1px solid var(--ink);
+    transition:background .2s ease, color .2s ease;
+  }
+  .btn.primary{background:var(--ink);color:var(--paper);}
+  .btn.primary:hover{background:var(--indigo);border-color:var(--indigo);}
+  .btn.ghost:hover{background:var(--ink);color:var(--paper);}
+
+  .chart-card{
+    border:1px solid var(--rule);
+    background:rgba(255,255,255,0.35);
+    padding:22px 22px 16px;
+  }
+  .chart-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:6px;
+  }
+  .chart-head .label{font-size:0.8rem;color:var(--ink-soft);}
+  .chart-head .value{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:600;color:var(--amber);}
+  .chart-sub{font-size:0.78rem;color:var(--ink-soft);margin-top:8px;font-family:'JetBrains Mono',monospace;}
+  #sparkline path.track{fill:none;stroke:var(--rule);stroke-width:2;}
+  #sparkline path.line{fill:none;stroke:var(--amber);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+  #sparkline circle{fill:var(--amber);}
+
+  /* ---------- STATS ---------- */
+  .stats{
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    margin-top:56px;
+  }
+  .stats .wrap{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+  }
+  .stat{
+    padding:28px 20px;
+    text-align:left;
+    border-left:1px solid var(--rule);
+  }
+  .stat:first-child{border-left:none;}
+  .stat .num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:2.1rem;font-weight:600;
+    color:var(--ink);
+  }
+  .stat .desc{font-size:0.85rem;color:var(--ink-soft);margin-top:4px;}
+
+  @media (max-width:720px){
+    .hero-grid{grid-template-columns:1fr;}
+    .stats .wrap{grid-template-columns:repeat(2,1fr);}
+    .stat:nth-child(3){border-left:none;}
+    .stat{border-bottom:1px solid var(--rule);}
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:88px 0;}
+  section + section{border-top:1px solid var(--rule);}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    margin-bottom:48px;
+    gap:24px;
+  }
+  .section-head h2{font-size:1.9rem;}
+  .section-head p{color:var(--ink-soft);font-size:0.95rem;max-width:34ch;}
+
+  /* ---------- PROJECTS ---------- */
+  .project{
+    border-top:1px solid var(--rule);
+    padding:40px 0;
+    display:grid;
+    grid-template-columns:0.9fr 1.5fr;
+    gap:40px;
+  }
+  .project:last-child{border-bottom:1px solid var(--rule);}
+  .project-title{font-size:1.4rem;margin-bottom:10px;}
+  .project-stack{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    line-height:1.8;
+  }
+  .project ul{list-style:none;}
+  .project li{
+    position:relative;
+    padding-left:18px;
+    margin-bottom:10px;
+    font-size:0.96rem;
+    color:var(--ink);
+  }
+  .project li::before{
+    content:'';
+    position:absolute;left:0;top:0.65em;
+    width:6px;height:1px;background:var(--ink-soft);
+  }
+  @media (max-width:720px){
+    .project{grid-template-columns:1fr;gap:16px;}
+  }
+  @media (min-width:721px) and (max-width:960px){
+    .project{grid-template-columns:1fr;gap:12px;}
+    .project-stack{margin-bottom:4px;}
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:36px 56px;
+  }
+  .skill-group h3{
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+    font-family:'Inter',sans-serif;
+  }
+  .skill-tags{display:flex;flex-wrap:wrap;gap:10px 18px;}
+  .skill-tags span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.82rem;
+    padding-bottom:3px;
+    border-bottom:1px solid var(--rule);
+  }
+  @media (max-width:720px){.skills-grid{grid-template-columns:1fr;}}
+
+  /* ---------- ACHIEVEMENTS / CERTS ---------- */
+  .two-col{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;}
+  .ach-list{list-style:none;counter-reset:ach;}
+  .ach-list li{
+    counter-increment:ach;
+    display:grid;grid-template-columns:36px 1fr;
+    gap:14px;
+    padding:18px 0;
+    border-top:1px solid var(--rule);
+  }
+  .ach-list li:last-child{border-bottom:1px solid var(--rule);}
+  .ach-list li::before{
+    content:counter(ach, decimal-leading-zero);
+    font-family:'JetBrains Mono',monospace;
+    color:var(--amber-text);
+    font-size:0.85rem;
+    padding-top:2px;
+  }
+  .cert-list{list-style:none;}
+  .cert-list li{
+    padding:14px 0;
+    border-top:1px solid var(--rule);
+    font-size:0.95rem;
+  }
+  .cert-list li:last-child{border-bottom:1px solid var(--rule);}
+  .cert-list .cert-code{
+    display:block;font-family:'JetBrains Mono',monospace;
+    font-size:0.76rem;color:var(--ink-soft);margin-top:3px;
+  }
+  @media (max-width:820px){.two-col{grid-template-columns:1fr;gap:44px;}}
+
+  /* ---------- TIMELINE (education + roles) ---------- */
+  .timeline{position:relative;padding-left:28px;border-left:1px solid var(--rule);}
+  .tl-item{position:relative;padding-bottom:36px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:'';position:absolute;left:-33px;top:6px;
+    width:9px;height:9px;border-radius:50%;
+    background:var(--paper);border:2px solid var(--indigo);
+  }
+  .tl-item .tl-time{font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--ink-soft);}
+  .tl-item h3{font-size:1.1rem;margin:4px 0 6px;}
+  .tl-item p{font-size:0.92rem;color:var(--ink-soft);}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{padding:80px 0 48px;}
+  footer h2{
+    font-size:clamp(2rem, 5vw, 3.2rem);
+    margin-bottom:24px;
+    max-width:14ch;
+  }
+  .contact-row{
+    display:flex;flex-wrap:wrap;gap:14px 28px;
+    margin-bottom:56px;
+  }
+  .contact-row a{
+    font-size:0.98rem;
+    padding-bottom:3px;
+    border-bottom:1px solid var(--ink);
+  }
+  .contact-row a:hover{color:var(--indigo);border-color:var(--indigo);}
+  .foot-bottom{
+    display:flex;justify-content:space-between;
+    padding-top:24px;border-top:1px solid var(--rule);
+    font-size:0.82rem;color:var(--ink-soft);
+    flex-wrap:wrap;gap:10px;
+  }
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  .skip-link{
+    position:absolute;left:16px;top:-48px;
+    background:var(--ink);color:var(--paper);
+    padding:10px 16px;font-size:0.85rem;
+    border-radius:2px;z-index:100;
+    transition:top .2s ease;
+  }
+  .skip-link:focus{top:16px;}
+
+  @media print{
+    nav, .cta-row, .skip-link{display:none !important;}
+    body{background:#fff;}
+    section, header.hero{padding:24px 0 !important;}
+    .reveal{opacity:1 !important;transform:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#work" class="skip-link">Skip to content</a>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="nav-mark">Ankith Chowdary</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">&#9776;</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Building software,<br>one solved problem<br>at a time.</h1>
+      <p class="role">Final-year CS student at <strong>KL University</strong> with strong DSA fundamentals and hands-on experience shipping full-stack and AI-driven products with React, Spring Boot, and LLM frameworks.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:ankithchowdary25@gmail.com">Email me</a>
+        <a class="btn ghost" href="#work">See projects</a>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-head">
+        <span class="label">Contest rating, last 20 contests</span>
+        <span class="value mono">1500</span>
+      </div>
+      <svg id="sparkline" viewBox="0 0 260 90" width="100%" height="90" preserveAspectRatio="none">
+        <path class="track" d="M0,70 L260,70"></path>
+        <path class="line" id="sparkPath" d=""></path>
+        <circle id="sparkDot" r="3.5" cx="0" cy="0"></circle>
+      </svg>
+      <div class="chart-sub">365-day streak &nbsp;·&nbsp; 750+ problems solved</div>
+    </div>
+  </div>
+</header>
+
+<section class="stats">
+  <div class="wrap">
+    <div class="stat">
+      <div class="num" data-count="750" data-suffix="+">0</div>
+      <div class="desc">LeetCode problems solved</div>
+    </div>
+    <div class="stat">
+      <div class="num" data-count="1500" data-suffix="">0</div>
+      <div class="desc">Contest rating</div>
+    </div>
+    <div class="stat">
+      <div class="num" data-count="365" data-suffix="">0</div>
+      <div class="desc">Day submission streak</div>
+    </div>
+    <div class="stat">
+      <div class="num" data-count="20" data-suffix="+">0</div>
+      <div class="desc">Contests entered</div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Selected work</h2>
+      <p>Three projects spanning backend systems, applied ML, and LLM-driven tooling.</p>
+    </div>
+
+    <div class="project reveal">
+      <div>
+        <h3 class="project-title">Event Registration &amp; Participation Analytics System</h3>
+        <div class="project-stack">React, Spring Boot, MongoDB, Redis, Machine Learning</div>
+      </div>
+      <ul>
+        <li>Built a full-stack platform handling 1,000+ event registrations with attendance tracking and participation analytics.</li>
+        <li>Designed REST APIs in Spring Boot with concurrency-safe registrations via atomic operations and Redis-based queuing to prevent overbooking.</li>
+        <li>Built role-based access control and scalable event workflows on MongoDB, keeping data consistent under concurrent access.</li>
+        <li>Integrated a linear regression model to predict event turnout, reaching ~85% accuracy on historical attendance data.</li>
+      </ul>
+    </div>
+
+    <div class="project reveal">
+      <div>
+        <h3 class="project-title">Facial Emotion-Based Music Recommendation System</h3>
+        <div class="project-stack">React.js, AWS Rekognition, Cloudinary, Spotify API, Axios</div>
+      </div>
+      <ul>
+        <li>Built a full-stack app that captures a user's image and generates mood-based music recommendations through the Spotify API.</li>
+        <li>Integrated AWS Rekognition for emotion detection with backend pipelines for image upload, processing, and API orchestration.</li>
+        <li>Designed mapping logic that translates detected emotions into Spotify query parameters — valence, energy — for personalized picks.</li>
+      </ul>
+    </div>
+
+    <div class="project reveal">
+      <div>
+        <h3 class="project-title">AI Career Advisor &amp; Job Recommendation System</h3>
+        <div class="project-stack">Python, FastAPI, JWT, LangGraph, LangChain</div>
+      </div>
+      <ul>
+        <li>Built a stateful AI system that analyzes resumes and generates personalized job recommendations using LLM workflows.</li>
+        <li>Designed a graph-based pipeline with LangGraph for dynamic tool invocation — PDF parsing, job search API calls.</li>
+        <li>Built FastAPI REST endpoints with JWT authentication for secure, scalable user sessions.</li>
+        <li>Combined resume parsing with real-time job retrieval to surface top matching roles with company and apply links.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Skills &amp; tools</h2>
+      <p>Languages and frameworks used across coursework, contests, and projects.</p>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <h3>Programming languages</h3>
+        <div class="skill-tags"><span>C</span><span>C++</span><span>Java</span><span>Python</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Web development</h3>
+        <div class="skill-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span><span>Node</span><span>Express</span><span>REST APIs</span><span>JWT</span><span>Flask</span><span>FastAPI</span><span>Spring Boot</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Databases</h3>
+        <div class="skill-tags"><span>MySQL</span><span>MongoDB</span><span>ChromaDB</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>DevOps &amp; tools</h3>
+        <div class="skill-tags"><span>Docker</span><span>Jenkins</span><span>CI/CD</span><span>GitHub</span><span>Postman</span><span>Linux</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>AI &amp; ML</h3>
+        <div class="skill-tags"><span>Generative AI</span><span>RAG Pipelines</span><span>Vector Databases</span><span>Machine Learning</span><span>Hugging Face</span><span>LangGraph</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Core concepts</h3>
+        <div class="skill-tags"><span>Data Structures</span><span>Algorithms</span><span>OOP</span><span>Competitive Programming</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="wrap two-col">
+    <div class="reveal">
+      <div class="section-head" style="margin-bottom:24px;">
+        <h2>Achievements</h2>
+      </div>
+      <ul class="ach-list">
+        <li>Ranked among the top 10 coders on KLU's competitive programming platform, Smart Interviews, based on consistent contest performance.</li>
+        <li>Solved 750+ problems on LeetCode at a 1500 rating, with a 365-day submission streak across 20+ weekly contests.</li>
+        <li>Secured a top 3 finish out of 200+ teams at Smart India Hackathon 2024 (internal round), a 36-hour problem-solving event.</li>
+        <li>Director, School of Competitive Coding at KLU — organized 10+ coding events and bootcamps for 500+ students.</li>
+        <li>Led FOCUS, KLU's student governance body — ran 3+ national-level fests and coordinated initiatives across 2,000+ students.</li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <div class="section-head" style="margin-bottom:24px;">
+        <h2>Certifications</h2>
+      </div>
+      <ul class="cert-list">
+        <li>MongoDB Associate Developer<span class="cert-code">C100DEV</span></li>
+        <li>Microsoft Certified<span class="cert-code">Azure Data Fundamentals</span></li>
+        <li>Salesforce AI Associate<span class="cert-code">Salesforce Trailhead</span></li>
+        <li>HackerRank<span class="cert-code">Java (Basic)</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Education</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-time">2023 — 2027</div>
+        <h3>KL University, Vijayawada</h3>
+        <p>B.Tech in Computer Science and Engineering (Honors) &nbsp;·&nbsp; CGPA 8.85 / 10</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">2020 — 2021</div>
+        <h3>Ravindra Bharathi Public School, Vijayawada</h3>
+        <p>Secondary (Class X) &nbsp;·&nbsp; CGPA 9.8 / 10</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Let's build something worth solving.</h2>
+    <div class="contact-row">
+      <a href="mailto:ankithchowdary25@gmail.com">ankithchowdary25@gmail.com</a>
+      <a href="tel:+917569285155">+91 75692 85155</a>
+      <a href="https://github.com/AnkithChowdary" id="githubLink" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/ankith-chowdary-2712692b1/" id="linkedinLink" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://leetcode.com/u/Ankith925/" id="leetcodeLink" target="_blank" rel="noopener noreferrer">LeetCode</a>
+    </div>
+    <div class="foot-bottom">
+      <span>Ankith Chowdary — Vijayawada, India</span>
+      <span class="mono">Built with HTML, CSS &amp; JS</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.focus();
+    }
+  });
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && e.target !== navToggle) {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Hero sparkline: draw a rating-progression curve ending at 1500
+  (function(){
+    const points = [
+      [0, 78], [26, 74], [52, 68], [78, 70], [104, 58],
+      [130, 60], [156, 48], [182, 44], [208, 30], [234, 20], [260, 12]
+    ];
+    let d = 'M' + points[0][0] + ',' + points[0][1];
+    for (let i = 1; i < points.length; i++) d += ' L' + points[i][0] + ',' + points[i][1];
+
+    const path = document.getElementById('sparkPath');
+    const dot = document.getElementById('sparkDot');
+    path.setAttribute('d', d);
+
+    const length = path.getTotalLength();
+    path.style.strokeDasharray = length;
+    path.style.strokeDashoffset = length;
+
+    const last = points[points.length - 1];
+    dot.setAttribute('cx', last[0]);
+    dot.setAttribute('cy', last[1]);
+    dot.style.opacity = 0;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      path.style.strokeDashoffset = 0;
+      dot.style.opacity = 1;
+    } else {
+      requestAnimationFrame(() => {
+        path.style.transition = 'stroke-dashoffset 1.6s cubic-bezier(.2,.7,.3,1)';
+        path.style.strokeDashoffset = 0;
+        setTimeout(() => {
+          dot.style.transition = 'opacity .4s ease';
+          dot.style.opacity = 1;
+        }, 1500);
+      });
+    }
+  })();
+
+  // Stat counters: count up once when the stats row scrolls into view
+  (function(){
+    const statsSection = document.querySelector('.stats');
+    const nums = document.querySelectorAll('.stat .num');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function runCounters(){
+      nums.forEach(el => {
+        const target = parseInt(el.getAttribute('data-count'), 10);
+        const suffix = el.getAttribute('data-suffix') || '';
+        if (prefersReduced) { el.textContent = target + suffix; return; }
+        const duration = 1400;
+        const start = performance.now();
+        function tick(now){
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(eased * target) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+    }
+
+    if (prefersReduced) { runCounters(); }
+    else {
+      const statsIo = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            runCounters();
+            statsIo.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+      statsIo.observe(statsSection);
+    }
+  })();
+
+  // Reveal-on-scroll for section content
+  (function(){
+    const items = document.querySelectorAll('.reveal');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) { items.forEach(i => i.classList.add('in')); return; }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    items.forEach(i => io.observe(i));
+  })();
+
+  // Scrollspy: highlight the current section in the nav
+  (function(){
+    const sections = ['work','skills','achievements','education','contact']
+      .map(id => document.getElementById(id)).filter(Boolean);
+    const links = Array.from(document.querySelectorAll('.nav-links a'));
+    const map = {};
+    links.forEach(a => { map[a.getAttribute('href').slice(1)] = a; });
+
+    const spyIo = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const link = map[entry.target.id];
+        if (!link) return;
+        if (entry.isIntersecting) {
+          links.forEach(a => a.removeAttribute('aria-current'));
+          link.setAttribute('aria-current', 'true');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+    sections.forEach(s => spyIo.observe(s));
+  })();
+</script>
+
+</body>
+</html>
